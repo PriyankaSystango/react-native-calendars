@@ -9,7 +9,10 @@ export default function styleConstructor(theme={}) {
     base: {
       width: 32,
       height: 32,
-      alignItems: 'center'
+      alignItems: 'center',
+      backgroundColor:appStyle.isOffPeakFare ? 'red' :'blue',
+      // borderRadius:20,
+      // borderWidth:2,
     },
     text: {
       marginTop: Platform.OS === 'android' ? 4 : 6,

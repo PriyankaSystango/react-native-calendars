@@ -99,7 +99,10 @@ class CalendarList extends Component {
       rows,
       texts,
       openDate: date,
-      currentMonth: parseDate(props.current)
+      currentMonth: parseDate(props.current),
+      isOutBounded:this.props.theme.isOutBounded,
+      classSelected:this.props.theme.classSelected
+
     };
 
     this.onViewableItemsChangedBound = this.onViewableItemsChanged.bind(this);
@@ -108,6 +111,26 @@ class CalendarList extends Component {
     this.onLayout = this.onLayout.bind(this);
   }
 
+  componentDidMount(){
+    console.log("componentDidMount++++",this.props.theme )
+
+
+}
+componentDidUpdate(prevProps) {
+  if (this.props !== prevProps) {
+
+    if(this.props.theme.isOutBounded !== prevProps.theme.isOutBounded){
+      this.setState({
+        isOutBounded:this.props.theme.isOutBounded
+      })
+}
+if(this.props.theme.classSelected !== prevProps.theme.classSelected){
+  this.setState({
+    classSelected:this.props.theme.classSelected
+  })
+}
+}
+}
   onLayout(event) {
     if (this.props.onLayout) {
       this.props.onLayout(event);
@@ -145,6 +168,8 @@ class CalendarList extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(props) {
+    // console.log("componentDidMount++++",props.theme )
+
     const current = parseDate(this.props.current);
     const nextCurrent = parseDate(props.current);
     
@@ -211,6 +236,8 @@ class CalendarList extends Component {
     return (
       <CalendarListItem
         testID={`${this.props.testID}_${item}`}
+        classSelected = {this.state.classSelected}
+        isOutBounded = {this.state.isOutBounded}
         scrollToMonth={this.scrollToMonth.bind(this)}
         item={item} 
         calendarHeight={this.props.calendarHeight} 
@@ -287,24 +314,24 @@ class CalendarList extends Component {
           testID={STATIC_HEADER}
           accessibilityElementsHidden={true} // iOS
           importantForAccessibility={'no-hide-descendants'} // Android
+          // scrollEnabled={false}
         />
       );
     }
   }
 
   render() {
+    console.log("#### calenderList render isOutBounded", this.state.isOutBounded)
+
     return (
       <View>
         <FlatList
           testID={this.props.testID}
           onLayout={this.onLayout}
           ref={(c) => this.listView = c}
-          //scrollEventThrottle={1000}
           style={[this.style.container, this.props.style]}
           initialListSize={this.props.pastScrollRange + this.props.futureScrollRange + 1} // ListView deprecated
           data={this.state.rows}
-          //snapToAlignment='start'
-          //snapToInterval={this.calendarHeight}
           removeClippedSubviews={this.props.removeClippedSubviews}
           pageSize={1} // ListView deprecated
           horizontal={this.props.horizontal}
