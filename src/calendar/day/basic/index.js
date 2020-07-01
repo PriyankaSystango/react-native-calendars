@@ -40,6 +40,16 @@ class Day extends Component {
     this.forceUpdate()
     if (this.props !== nextProps) {
       this.forceUpdate()
+      var classData = this.props.classSelected
+    let flag = 0
+    for (let index = 0; index < classData.length; index++) {
+      if(classData[index] == true){
+        flag = flag+1
+      }
+    }
+    this.setState({
+      circleType : flag
+    })
     }
   }
 
@@ -107,6 +117,7 @@ class Day extends Component {
   }else{
     data =  this.props.theme.availabilityData.inbound_availability
    }
+   
       let classes = this.state.classSelected
       let index = -1
       for(i = 0; i< classes.length; i++){
@@ -419,25 +430,25 @@ class Day extends Component {
 
   
 
-  halfCirclesView(date, detail){
+  halfCirclesView(date, detail, isDisabled){
     let i = 0.75
     return(
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{ justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
+        <View style={{ borderColor:isDisabled && isDisabled.color == '#00adf5' ? '#03B2D8' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20, justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
         <View>
           <View style={{flexDirection:'row'}}>
             <View style={{height:40*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-              <View style={{position:'absolute',top:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:this.getHalfCircleColor(detail,1)}}/>
+              <View style={{position:'absolute',top:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getHalfCircleColor(detail,1)}}/>
             </View>
             <View style={{height:40*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-              <View style={{position:'absolute',top:0, right:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:this.getHalfCircleColor(detail,2)}}/>
+              <View style={{position:'absolute',top:0, right:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getHalfCircleColor(detail,2)}}/>
             </View>
           </View>
           <View style={{position:'absolute',left:18*i, height:40*i, width:4*i, backgroundColor:'white'}}/>
-         <View style={{position:'absolute', top:(5.5)*i, left:5*i, justifyContent:'center', alignItems:'center',backgroundColor:this.getBackgroundColor(detail), borderRadius:15*i,height:29*i, width:29*i,}}>
-          <Text style={{fontSize: 14*i, color:this.getTextColor(detail)}}>
+         <View style={{position:'absolute', top:(5.5)*i, left:5*i, justifyContent:'center', alignItems:'center',backgroundColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail), borderRadius:15*i,height:29*i, width:29*i,}}>
+          <Text style={{fontSize: isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14*i, color:isDisabled ? '#E1E4E7' : this.getTextColor(detail)}}>
             {String(date)}
             </Text>
           </View>
@@ -482,7 +493,7 @@ class Day extends Component {
     )
 }
 
-fullCircle(date, detail) {
+fullCircle(date, detail, isDisabled) {
   let i = 0.75
     return (
       <TouchableOpacity onPress={()=>{
@@ -490,6 +501,7 @@ fullCircle(date, detail) {
       }}>
         <View
           style={{
+            borderColor:isDisabled && isDisabled.color == '#00adf5' ? '#03B2D8' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20, 
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: 'white',
@@ -511,7 +523,7 @@ fullCircle(date, detail) {
                     width: 40 * i,
                     borderRadius: 20 * i,
                     borderWidth: 2,
-                    borderColor: this.getFullCircelColor(detail),
+                    borderColor: isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getFullCircelColor(detail),
                   }}
                 />
               </View>
@@ -524,12 +536,12 @@ fullCircle(date, detail) {
                 left: 5 * i,
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: this.getBackgroundColor(detail),
+                backgroundColor: isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail),
                 borderRadius: 15 * i,
                 height: 29 * i,
                 width: 29 * i,
               }}>
-              <Text style={{fontSize: 14 * i, color: this.getTextColor(detail)}}>
+              <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14 * i, color: isDisabled ? '#E1E4E7' : this.getTextColor(detail)}}>
                 {String(date)}
               </Text>
             </View>
