@@ -23,24 +23,6 @@ class CalendarListItem extends Component {
     this.style = styleConstructor(props.theme);
   }
 
-
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
-      console.log("in  isOutBounded of Calender Item____", this.props.isOutBounded, prevProps.isOutBounded)
-
-      if(this.props.isOutBounded !== prevProps.isOutBounded){
-        this.setState({
-          isOutBounded:this.props.isOutBounded
-        })
-  }
-  if(this.props.classSelected !== prevProps.classSelected){
-    // console.log("in  classSelected of Calender Item____")
-    this.setState({
-      classSelected:this.props.classSelected
-    })
-  }
-  }
-  }
   shouldComponentUpdate(nextProps) {
     const r1 = this.props.item;
     const r2 = nextProps.item;
@@ -78,13 +60,13 @@ class CalendarListItem extends Component {
 
   render() {
     const row = this.props.item;
-    console.log("#### calenderListItem render classSelected", this.state.isOutBounded)
+    console.log("#### calenderListItem render classSelected", this.props.classSelected)
     if (row.getTime) {
       return (
         <Calendar
           testID={`${this.props.testID}_${row}`}
           classSelected = {this.state.classSelected}
-          isOutBounded = {this.state.isOutBounded}
+          isOutBounded = {this.props.isOutBounded}
           theme={ this.props.theme}
           style={[{height: this.props.calendarHeight, width: this.props.calendarWidth}, this.style.calendar, this.props.style]}
           current={row}

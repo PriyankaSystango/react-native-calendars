@@ -37,15 +37,12 @@ class Day extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("in Day+++", this.props.classSelected,this.props.isOutBounded)
+    this.forceUpdate()
     if (this.props !== nextProps) {
-
+      this.forceUpdate()
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   console.log("in Day+++", this.props.classSelected,prevProps.isOutBounded)
-  // }
   componentWillMount(){
     var classData = this.props.theme.classSelected
     let flag = 0
@@ -60,7 +57,6 @@ class Day extends Component {
 
   }
   componentDidMount(){
-    // console.log("this.props.theme+++ in Day",this.props.theme)
   }
 
   onDayPress() {
@@ -106,11 +102,10 @@ class Day extends Component {
   }
   getFullCircelColor(details){
     var data;
-    if(this.props.isOutBounded){
+    if(this.state.isOutBounded){
    data =  this.props.theme.availabilityData.outbound_availability
   }else{
     data =  this.props.theme.availabilityData.inbound_availability
-
    }
       let classes = this.state.classSelected
       let index = -1
@@ -121,28 +116,28 @@ class Day extends Component {
       }
       switch(index){
         case 0 :{
-          if(data[details.dateString].economy){
+          if(data[details.dateString] && data[details.dateString].economy){
             return '#2044FF'
           }else{
               return 'rgb(231,237,241)'}
 
         }
         case 1 :{
-          if(data[details.dateString].premium_economy){
+          if(data[details.dateString] && data[details.dateString].premium_economy){
             return '#FEA41D'
           }else{
               return 'rgb(231,237,241)'}
 
         }
         case 2 :{
-          if(data[details.dateString].business){
+          if(data[details.dateString] && data[details.dateString].business){
             return '#A905F6'
           }else{
               return 'rgb(231,237,241)'}
 
         }
         case 3 :{
-          if(data[details.dateString].first){
+          if(data[details.dateString] && data[details.dateString].first){
             return '#ED1870'
           }else{
               return 'rgb(231,237,241)'}
@@ -153,7 +148,7 @@ class Day extends Component {
 
   getQuarterCircleColor(details, index){
     var data;
-    if(this.props.isOutBounded){
+    if(this.state.isOutBounded){
    data =  this.props.theme.availabilityData.outbound_availability
   }else{
     data =  this.props.theme.availabilityData.inbound_availability
@@ -161,7 +156,7 @@ class Day extends Component {
    }
     switch(index){
       case 1 : {
-        if(data[details.dateString].business){
+        if(data[details.dateString] && data[details.dateString].business){
           return '#A905F6'
         }else{
             return 'rgb(231,237,241)'
@@ -169,7 +164,7 @@ class Day extends Component {
         }
       }
       case 2 : {
-        if(data[details.dateString].premium_economy){
+        if(data[details.dateString] && data[details.dateString].premium_economy){
           return '#FEA41D'
         }else{
             return 'rgb(231,237,241)'
@@ -177,7 +172,7 @@ class Day extends Component {
         }
       }
       case 3 : {
-        if(data[details.dateString].first){
+        if(data[details.dateString] && data[details.dateString].first){
           return '#EB186F'
         }else{
             return 'rgb(231,237,241)'
@@ -185,7 +180,7 @@ class Day extends Component {
         }
       }
       case 4 : {
-        if(data[details.dateString].economy){
+        if(data[details.dateString] && data[details.dateString].economy){
           return '#2044FF'
         }else{
             return 'rgb(231,237,241)'
@@ -198,7 +193,7 @@ class Day extends Component {
 
   getHalfCircleColor(details, index){
     var data;
-    if(this.props.isOutBounded){
+    if(this.state.isOutBounded){
    data =  this.props.theme.availabilityData.outbound_availability
   }else{
     data =  this.props.theme.availabilityData.inbound_availability
@@ -215,14 +210,14 @@ class Day extends Component {
         case 1 :{
           switch (indexArray[0]){
             case 0 : {
-              if(data[details.dateString].economy){
+              if(data[details.dateString] && data[details.dateString].economy){
                 return '#2044FF'
               }else{
                   return 'rgb(231,237,241)'
                }
             }
             case 1 : {
-              if(data[details.dateString].premium_economy){
+              if(data[details.dateString] && data[details.dateString].premium_economy){
                 return '#FEA41D'
               }else{
                   return 'rgb(231,237,241)'
@@ -230,7 +225,7 @@ class Day extends Component {
               }
             }
             case 2 : {
-              if(data[details.dateString].business){
+              if(data[details.dateString] && data[details.dateString].business){
                 return '#AC05FA'
               }else{
                   return 'rgb(231,237,241)'
@@ -238,7 +233,7 @@ class Day extends Component {
               }
             }
             case 3 : {
-              if(data[details.dateString].first){
+              if(data[details.dateString] && data[details.dateString].first){
                 return '#ED1870'
               }else{
                   return 'rgb(231,237,241)'
@@ -251,7 +246,7 @@ class Day extends Component {
         case 2 :{
           switch (indexArray[1]){
             case 0 : {
-              if(data[details.dateString].economy){
+              if(data[details.dateString] && data[details.dateString].economy){
                 return '#2044FF'
               }else{
                   return 'rgb(231,237,241)'
@@ -259,7 +254,7 @@ class Day extends Component {
               }
             }
             case 1 : {
-              if(data[details.dateString].premium_economy){
+              if(data[details.dateString] && data[details.dateString].premium_economy){
                 return '#FEA41D'
               }else{
                   return 'rgb(231,237,241)'
@@ -267,7 +262,7 @@ class Day extends Component {
               }
             }
             case 2 : {
-              if(data[details.dateString].business){
+              if(data[details.dateString] && data[details.dateString].business){
                 return '#A905F6'
               }else{
                   return 'rgb(231,237,241)'
@@ -275,7 +270,7 @@ class Day extends Component {
               }
             }
             case 3 : {
-              if(data[details.dateString].first){
+              if(data[details.dateString] && data[details.dateString].first){
                 return '#ED1870'
               }else{
                   return 'rgb(231,237,241)'
@@ -292,8 +287,7 @@ class Day extends Component {
 
   threePartCircleColor(details,index){
     var data;
-    console.log("this.state.isOutBounded++++", this.props.isOutBounded)
-    if(this.props.isOutBounded){
+    if(this.state.isOutBounded){
    data =  this.props.theme.availabilityData.outbound_availability
   }else{
     data =  this.props.theme.availabilityData.inbound_availability
@@ -306,18 +300,19 @@ class Day extends Component {
         indexArray.push(i) 
       }
     }
+
     switch(index){
       case 1 :{
         switch (indexArray[0]){
           case 0 : {
-            if(data[details.dateString].economy){
+            if(data[details.dateString] && data[details.dateString].economy){
               return '#2044FF'
             }else{
                 return 'rgb(231,237,241)'
              }
           }
           case 1 : {
-            if(data[details.dateString].premium_economy){
+            if( data[details.dateString] && data[details.dateString].premium_economy){
               return '#FEA41D'
             }else{
                 return 'rgb(231,237,241)'
@@ -325,7 +320,7 @@ class Day extends Component {
             }
           }
           case 2 : {
-            if(data[details.dateString].business){
+            if(data[details.dateString] && data[details.dateString].business){
               return '#AC05FA'
             }else{
                 return 'rgb(231,237,241)'
@@ -333,7 +328,7 @@ class Day extends Component {
             }
           }
           case 3 : {
-            if(data[details.dateString].first){
+            if(data[details.dateString] && data[details.dateString].first){
               return '#ED1870'
             }else{
                 return 'rgb(231,237,241)'
@@ -346,7 +341,7 @@ class Day extends Component {
       case 2 :{
         switch (indexArray[1]){
           case 0 : {
-            if(data[details.dateString].economy){
+            if(data[details.dateString] && data[details.dateString].economy){
               return '#2044FF'
             }else{
                 return 'rgb(231,237,241)'
@@ -354,7 +349,7 @@ class Day extends Component {
             }
           }
           case 1 : {
-            if(data[details.dateString].premium_economy){
+            if(data[details.dateString] && data[details.dateString].premium_economy){
               return '#FEA41D'
             }else{
                 return 'rgb(231,237,241)'
@@ -362,7 +357,7 @@ class Day extends Component {
             }
           }
           case 2 : {
-            if(data[details.dateString].business){
+            if(data[details.dateString] && data[details.dateString].business){
               return '#A905F6'
             }else{
                 return 'rgb(231,237,241)'
@@ -370,7 +365,7 @@ class Day extends Component {
             }
           }
           case 3 : {
-            if(data[details.dateString].first){
+            if(data[details.dateString] && data[details.dateString].first){
               return '#ED1870'
             }else{
                 return 'rgb(231,237,241)'
@@ -383,7 +378,7 @@ class Day extends Component {
       case 3 :{
         switch (indexArray[2]){
           case 0 : {
-            if(data[details.dateString].economy){
+            if(data[details.dateString] && data[details.dateString].economy){
               return '#2044FF'
             }else{
                 return 'rgb(231,237,241)'
@@ -391,7 +386,7 @@ class Day extends Component {
             }
           }
           case 1 : {
-            if(data[details.dateString].premium_economy){
+            if(data[details.dateString] && data[details.dateString].premium_economy){
               return '#FEA41D'
             }else{
                 return 'rgb(231,237,241)'
@@ -399,7 +394,7 @@ class Day extends Component {
             }
           }
           case 2 : {
-            if(data[details.dateString].business){
+            if(data[details.dateString] && data[details.dateString].business){
               return '#A905F6'
             }else{
                 return 'rgb(231,237,241)'
@@ -407,7 +402,7 @@ class Day extends Component {
             }
           }
           case 3 : {
-            if(data[details.dateString].first){
+            if(data[details.dateString] && data[details.dateString].first){
               return '#ED1870'
             }else{
                 return 'rgb(231,237,241)'
@@ -452,32 +447,32 @@ class Day extends Component {
     )
 }
 
-  threePartCirclesView(date, detail){
+  threePartCirclesView(date, detail,isDisabled){
     let i = 0.75
     return(
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{justifyContent:'center', alignItems:'center', backgroundColor:'white', transform:[{rotate:'0deg'}]}}>
+        <View style={{borderColor:isDisabled && isDisabled.color == '#00adf5' ? '#03B2D8' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20,  justifyContent:'center', alignItems:'center', backgroundColor:'white', padding:1,transform:[{rotate:'0deg'}]}}>
           <View>
             <View style={{flexDirection:'row'}}>
               <View style={{height:26.6*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',top:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:this.threePartCircleColor(detail,1)}}/>
+                <View style={{position:'absolute',top:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,1)}}/>
               </View>
               <View style={{height:26.6*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',top:0, right:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:this.threePartCircleColor(detail,2)}}/>
+                <View style={{position:'absolute',top:0, right:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,2)}}/>
               </View>
             </View>
             <View style={{flexDirection:'row'}}>
               <View style={{height:13.3*i, width:40*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',bottom:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:this.threePartCircleColor(detail,3)}}/>
+                <View style={{position:'absolute',bottom:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,3)}}/>
               </View>
             </View>
             <View style={{position:'absolute',left:18*i, height:2*i, width:4*i, backgroundColor:'white'}}/>
             <View style={{position:'absolute', height:2*i, top:26*i, width:4*i, backgroundColor:'white', transform:[{rotate:'70deg'}]}}/>
             <View style={{position:'absolute', height:2*i, top:26*i, left:36*i, width:4*i, backgroundColor:'white', transform:[{rotate:'-70deg'}]}}/>
-            <View style={{position:'absolute', height:30*i, width:30*i,justifyContent:'center', alignItems:'center', backgroundColor:this.getBackgroundColor(detail), borderRadius:15*i, top:5*i, left:5*i}}>
-              <Text style={{fontSize: 14*i, color:this.getTextColor(detail)}}>
+            <View style={{position:'absolute', height:30*i, width:30*i,justifyContent:'center', alignItems:'center', backgroundColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail), borderRadius:15*i, top:5*i, left:5*i}}>
+              <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14*i, color:isDisabled ? '#E1E4E7' : this.getTextColor(detail)}}>
               {String(date)}
               </Text>
             </View>
@@ -580,19 +575,20 @@ fullCircle(date, detail) {
         </TouchableOpacity>
     )
 }
-  getAppropriateCircle(){
+  getAppropriateCircle(textStyle){
     if(this.state.circleType == 4){
-      return this.quarterCirclesView(this.props.children, this.props.date)
+      return this.quarterCirclesView(this.props.children, this.props.date, textStyle[1])
     }else if(this.state.circleType == 3){
-      return this.threePartCirclesView(this.props.children, this.props.date)
+      return this.threePartCirclesView(this.props.children, this.props.date, textStyle[1])
     }else if(this.state.circleType == 2){
-      return this.halfCirclesView(this.props.children, this.props.date)
+      return this.halfCirclesView(this.props.children, this.props.date, textStyle[1])
     }else if(this.state.circleType == 1){
-      return this.fullCircle(this.props.children, this.props.date)
+      return this.fullCircle(this.props.children, this.props.date, textStyle[1])
     }
   }
 
   render() {
+    console.log("#### Day render classSelected", this.props.classSelected)
     const {theme, disableAllTouchEventsForDisabledDays} = this.props;
     const containerStyle = [this.style.base];
     const textStyle = [this.style.text];
@@ -649,7 +645,27 @@ fullCircle(date, detail) {
     }
   // console.log("props for Date is++++",this.props )
     return (
-      this.getAppropriateCircle()
+    //   <TouchableOpacity
+    //   testID={this.props.testID}
+    //   style={containerStyle}
+    //   onPress={this.onDayPress}
+    //   onLongPress={this.onDayLongPress}
+    //   activeOpacity={activeOpacity}
+    //   disabled={shouldDisableTouchEvent}
+    //   accessibilityRole={isDisabled ? undefined : 'button'}
+    //   accessibilityLabel={this.props.accessibilityLabel}
+    // >
+    //   <Text allowFontScaling={false} style={textStyle}>{String(this.props.children)}</Text>
+    //   <Dot
+    //     theme={theme}
+    //     isMarked={marked}
+    //     dotColor={dotColor}
+    //     isSelected={selected}
+    //     isToday={isToday}
+    //     isDisabled={isDisabled}
+    //   />
+    // </TouchableOpacity>
+      this.getAppropriateCircle(textStyle)
       
  );
   }

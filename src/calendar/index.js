@@ -143,47 +143,11 @@ class Calendar extends Component {
     );
   }
   componentWillReceiveProps(nextProps) {
-
-   if (this.props !== nextProps) {
-    console.log("in if++++ 1",this.props.isOutBounded, nextProps.isOutBounded  )
-
-     
-    if (this.props.isOutBounded !== nextProps.isOutBounded) {
-        console.log("in if++++ 2", nextProps.isOutBounded)
-        this.setState({
-          isOutBounded: nextProps.isOutBounded
-        });
-      }
-      // if (nextProps.classSelected) {
-      //   console.log("in if++++ 3",nextProps.classSelected )
-      //   // this.setState({
-      //   //   classSelected: nextProps.classSelected,
-      //   //   flag:!this.state.flag
-      //   // });
-      // }
+    if (this.props!==nextProps) {
+      this.forceUpdate()
     }
   }
-  // componentDidUpdate(prevProps) {
-  //   console.log("in didUpdate++++ 1", prevProps.isOutBounded,prevProps.classSelected )
-
-  //  if (this.props !== prevProps) {
-  //   if (this.state.isOutBounded !== prevProps.isOutBounded) {
-  //       console.log("in didUpdate++++ 2")
-  //       this.setState({
-  //         isOutBounded: this.props.isOutBounded,
-  //         flag:!this.state.flag
-  //       });
-  //     }
-  //     if ( this.props.classSelected) {
-  //       console.log("in didUpdate++++ 3")
-  //       this.setState({
-  //         classSelected: prevProps.classSelected,
-  //         flag:!this.state.flag
-  //       });
-  //     }
-  //   }
-  // }
-
+  
   _handleDayInteraction(date, interaction) {
     const day = parseDate(date);
     const minDate = parseDate(this.props.minDate);
@@ -266,11 +230,12 @@ class Calendar extends Component {
     const date = day.getDate();
     const dateAsObject = xdateToData(day);
     const accessibilityLabel = this.getAccessibilityLabel(state, day);
-
     return (
       <View style={{flex: 1, alignItems: 'center'}} key={id}>
         <DayComp
           testID={`${SELECT_DATE_SLOT}-${dateAsObject.dateString}`}
+          isOutBounded = {this.state.isOutBounded}
+          classSelected = {this.state.classSelected}
           state={state}
           theme={this.props.theme}
           onPress={this.pressDay}
@@ -418,7 +383,6 @@ class Calendar extends Component {
 
     const weeks = [];
     while (days.length) {
-      console.log("in while+++")
       weeks.push(this.renderWeek(days.splice(0, 7), weeks.length));
     }
 

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {TouchableWithoutFeedback, Text, View} from 'react-native';
+import {TouchableWithoutFeedback, Text, View, Image} from 'react-native';
 import {shouldUpdate} from '../../../component-updater';
 import Dot from '../../dot';
 import * as defaultStyle from '../../../style';
@@ -117,6 +117,7 @@ class Day extends Component {
   }
 
   render() {
+    const flags = this.markingStyle;
     const containerStyle = [this.style.base];
     const textStyle = [this.style.text];
     let leftFillerStyle = {};
@@ -155,7 +156,7 @@ class Day extends Component {
           backgroundColor: this.theme.calendarBackground
         };
         rightFillerStyle = {
-          backgroundColor: flags.startingDay.color
+          backgroundColor: "rgba(3,178,216,0.1)"
         };
         containerStyle.push({
           backgroundColor: flags.startingDay.color
@@ -165,7 +166,7 @@ class Day extends Component {
           backgroundColor: this.theme.calendarBackground
         };
         leftFillerStyle = {
-          backgroundColor: flags.endingDay.color
+          backgroundColor: "rgba(3,178,216,0.1)"
         };
         containerStyle.push({
           backgroundColor: flags.endingDay.color
@@ -196,7 +197,6 @@ class Day extends Component {
     }
 
     const {marking: {marked, dotColor}, theme} = this.props;
-
     return (
       <TouchableWithoutFeedback
         testID={this.props.testID}
@@ -208,15 +208,19 @@ class Day extends Component {
         accessibilityLabel={this.props.accessibilityLabel}
       >
         <View style={this.style.wrapper}>
+        {(flags.startingDay && !flags.endingDay) && <Image source={require('../../../../src/img/Vector-Left.png')} style={{position:'absolute', left:-5, top:15, zIndex:10 }}></Image>}
+
           {fillers}
-          <View style={containerStyle}>
-            <Text allowFontScaling={false} style={textStyle}>{String(this.props.children)}</Text>
+          <View style={[containerStyle]}>
+            <Text allowFontScaling={false} style={[textStyle]}>{String(this.props.children)}</Text>
             <Dot
               theme={theme}
               isMarked={marked}
               dotColor={dotColor}
             />
           </View>
+        {(!flags.startingDay && flags.endingDay) && <Image source={require('../../../../src/img/Vector-Right.png')} style={{position:'absolute', right:-5, top:15 }}></Image>}
+
         </View>
       </TouchableWithoutFeedback>
     );

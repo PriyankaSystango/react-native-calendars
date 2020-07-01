@@ -100,8 +100,8 @@ class CalendarList extends Component {
       texts,
       openDate: date,
       currentMonth: parseDate(props.current),
-      isOutBounded:this.props.theme.isOutBounded,
-      classSelected:this.props.theme.classSelected
+      isOutBounded:this.props.isOutBounded,
+      classSelected:this.props.classSelected
 
     };
 
@@ -111,26 +111,6 @@ class CalendarList extends Component {
     this.onLayout = this.onLayout.bind(this);
   }
 
-  componentDidMount(){
-    console.log("componentDidMount++++",this.props.theme )
-
-
-}
-componentDidUpdate(prevProps) {
-  if (this.props !== prevProps) {
-
-    if(this.props.theme.isOutBounded !== prevProps.theme.isOutBounded){
-      this.setState({
-        isOutBounded:this.props.theme.isOutBounded
-      })
-}
-if(this.props.theme.classSelected !== prevProps.theme.classSelected){
-  this.setState({
-    classSelected:this.props.theme.classSelected
-  })
-}
-}
-}
   onLayout(event) {
     if (this.props.onLayout) {
       this.props.onLayout(event);
@@ -236,8 +216,8 @@ if(this.props.theme.classSelected !== prevProps.theme.classSelected){
     return (
       <CalendarListItem
         testID={`${this.props.testID}_${item}`}
-        classSelected = {this.state.classSelected}
-        isOutBounded = {this.state.isOutBounded}
+        classSelected = {this.props.classSelected}
+        isOutBounded = {this.props.isOutBounded}
         scrollToMonth={this.scrollToMonth.bind(this)}
         item={item} 
         calendarHeight={this.props.calendarHeight} 
@@ -321,8 +301,7 @@ if(this.props.theme.classSelected !== prevProps.theme.classSelected){
   }
 
   render() {
-    console.log("#### calenderList render isOutBounded", this.state.isOutBounded)
-
+    console.log("#### calenderList render classSelected", this.props.classSelected)
     return (
       <View>
         <FlatList
