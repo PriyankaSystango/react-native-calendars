@@ -60,12 +60,12 @@ class CalendarListItem extends Component {
 
   render() {
     const row = this.props.item;
-    console.log("#### calenderListItem render classSelected", this.props.classSelected)
+    // console.log("#### calenderListItem render classSelected", this.props.isOutBounded)
     if (row.getTime) {
       return (
         <Calendar
           testID={`${this.props.testID}_${row}`}
-          classSelected = {this.state.classSelected}
+          classSelected = {this.props.classSelected}
           isOutBounded = {this.props.isOutBounded}
           theme={ this.props.theme}
           style={[{height: this.props.calendarHeight, width: this.props.calendarWidth}, this.style.calendar, this.props.style]}

@@ -148,8 +148,6 @@ class CalendarList extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(props) {
-    // console.log("componentDidMount++++",props.theme )
-
     const current = parseDate(this.props.current);
     const nextCurrent = parseDate(props.current);
     
@@ -301,7 +299,7 @@ class CalendarList extends Component {
   }
 
   render() {
-    console.log("#### calenderList render classSelected", this.props.classSelected)
+    // console.log("#### calenderList render classSelected", this.props.isOutBounded)
     return (
       <View>
         <FlatList

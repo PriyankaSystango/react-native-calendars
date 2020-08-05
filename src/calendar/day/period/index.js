@@ -6,6 +6,7 @@ import {shouldUpdate} from '../../../component-updater';
 import Dot from '../../dot';
 import * as defaultStyle from '../../../style';
 import styleConstructor from './style';
+import moment from "moment"
 
 
 class Day extends Component {
@@ -187,11 +188,26 @@ class Day extends Component {
           backgroundColor: flags.endingDay.color
         });
       }
-
+      var rightBorderStyle = {}
+      var leftBorderStyle = {}
+      if( !this.props.marking.startingDay && !this.props.marking.endingDay){
+        let day = moment(this.props.date.dateString).day()
+        if(day == 6){
+          rightBorderStyle =  {
+            borderTopRightRadius : 20,
+            borderBottomRightRadius : 20,
+          }
+        }else if( day == 0){
+          leftBorderStyle =  {
+            borderTopLeftRadius : 20,
+            borderBottomLeftRadius : 20,
+          }
+        }
+      }
       fillers = (
-        <View style={[this.style.fillers, fillerStyle]}>
-          <View style={[this.style.leftFiller, leftFillerStyle]}/>
-          <View style={[this.style.rightFiller, rightFillerStyle]}/>
+        <View style={[this.style.fillers, fillerStyle, rightBorderStyle, leftBorderStyle]}>
+          <View style={[this.style.leftFiller, leftFillerStyle, leftBorderStyle]}/>
+          <View style={[this.style.rightFiller, rightFillerStyle,rightBorderStyle]}/>
         </View>
       );
     }
@@ -207,7 +223,7 @@ class Day extends Component {
         accessibilityRole={this.props.marking.disableTouchEvent ? undefined : 'button'}
         accessibilityLabel={this.props.accessibilityLabel}
       >
-        <View style={this.style.wrapper}>
+        <View style={[this.style.wrapper]}>
         {(flags.startingDay && !flags.endingDay) && <Image source={require('../../../../src/img/Vector-Left.png')} style={{position:'absolute', left:-5, top:15, zIndex:10 }}></Image>}
 
           {fillers}

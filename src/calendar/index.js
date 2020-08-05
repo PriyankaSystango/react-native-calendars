@@ -144,6 +144,10 @@ class Calendar extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (this.props!==nextProps) {
+      this.setState({
+        classSelected : nextProps.classSelected,
+        isOutBounded: nextProps.isOutBounded
+      })
       this.forceUpdate()
     }
   }
@@ -362,7 +366,6 @@ class Calendar extends Component {
     }, this);
 
     if (this.props.showWeekNumbers) {
-      console.log("in if++++ of Week Number")
       week.unshift(this.renderWeekNumber(days[days.length - 1].getWeek()));
     }
 
@@ -374,7 +377,7 @@ class Calendar extends Component {
   }
 
   render() {
-    console.log("#### calender render classSelected", this.state.classSelected)
+    // console.log("#### calender render classSelected", this.state.isOutBounded)
 
     const {currentMonth} = this.state;
     const {firstDay, showSixWeeks, hideExtraDays} = this.props;
