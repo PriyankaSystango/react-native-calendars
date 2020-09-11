@@ -110,6 +110,7 @@ class Calendar extends Component {
       currentMonth: props.current ? parseDate(props.current) : XDate(),
       isOutBounded: this.props.isOutBounded,
       classSelected: this.props.classSelected,
+      selectedDate: this.props.selectedDate,
       flag:true
     };
 
@@ -146,7 +147,8 @@ class Calendar extends Component {
     if (this.props!==nextProps) {
       this.setState({
         classSelected : nextProps.classSelected,
-        isOutBounded: nextProps.isOutBounded
+        isOutBounded: nextProps.isOutBounded,
+        selectedDate: nextProps.selectedDate
       })
       this.forceUpdate()
     }
@@ -240,6 +242,7 @@ class Calendar extends Component {
           testID={`${SELECT_DATE_SLOT}-${dateAsObject.dateString}`}
           isOutBounded = {this.state.isOutBounded}
           classSelected = {this.state.classSelected}
+          selectedDate = {this.state.selectedDate}
           state={state}
           theme={this.props.theme}
           onPress={this.pressDay}
@@ -351,6 +354,7 @@ class Calendar extends Component {
           theme={this.props.theme}
           classSelected = {this.state.classSelected}
           isOutBounded = {this.state.isOutBounded}
+          selectedDate = {this.state.selectedDate}
           marking={{disableTouchEvent: true}}
           state="disabled">
           {weekNumber}
@@ -377,7 +381,7 @@ class Calendar extends Component {
   }
 
   render() {
-    // console.log("#### calender render classSelected", this.state.isOutBounded)
+    // console.log("this.state.selectedDate+++", this.state.selectedDate)
 
     const {currentMonth} = this.state;
     const {firstDay, showSixWeeks, hideExtraDays} = this.props;

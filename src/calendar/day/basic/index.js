@@ -28,6 +28,7 @@ class Day extends Component {
       circleType:0,
       isOutBounded: this.props.isOutBounded,
       classSelected: this.props.theme.classSelected,
+      selectedDate: this.props.classSelected,
     }
     
     this.style = styleConstructor(props.theme);
@@ -41,7 +42,9 @@ class Day extends Component {
     if (this.props !== nextProps) {
       this.setState({
         classSelected : nextProps.classSelected,
-        isOutBounded: nextProps.isOutBounded
+        isOutBounded: nextProps.isOutBounded,
+        selectedDate: nextProps.selectedDate,
+        
       })
       this.forceUpdate()
       var classData = this.props.classSelected
@@ -485,7 +488,7 @@ class Day extends Component {
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{ borderColor:isDisabled && isDisabled.color == '#00adf5' ? '#03B2D8' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20, justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
+        <View style={{ borderColor:this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20, justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
         <View>
           <View style={{flexDirection:'row'}}>
             <View style={{height:40*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
@@ -513,7 +516,7 @@ class Day extends Component {
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{borderColor:isDisabled && isDisabled.color == '#00adf5' ? '#03B2D8' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20,  justifyContent:'center', alignItems:'center', backgroundColor:'white', padding:1,transform:[{rotate:'0deg'}]}}>
+        <View style={{borderColor:this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20,  justifyContent:'center', alignItems:'center', backgroundColor:'white', padding:1,transform:[{rotate:'0deg'}]}}>
           <View>
             <View style={{flexDirection:'row'}}>
               <View style={{height:26.6*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
@@ -550,7 +553,7 @@ noCircleView(date, detail, isDisabled) {
       }}>
         <View
           style={{
-            borderColor:isDisabled && isDisabled.color == '#00adf5' ? '#03B2D8' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20, 
+            borderColor:isDisabled && isDisabled.color == '#00adf5' ? 'white' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20, 
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: 'white',
@@ -603,13 +606,13 @@ noCircleView(date, detail, isDisabled) {
 
 fullCircle(date, detail, isDisabled) {
   let i = 0.75
-    return (
+  return (
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
         <View
           style={{
-            borderColor:isDisabled && isDisabled.color == '#00adf5' ? '#03B2D8' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20, 
+            borderColor:this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20, 
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: 'white',
@@ -666,7 +669,7 @@ fullCircle(date, detail, isDisabled) {
         this.onDayPress()
       }}>
         <View style={{ 
-          borderColor:isDisabled && isDisabled.color == '#00adf5' ? '#03B2D8' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20,
+          borderColor:this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20,
           justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
           <View>
             <View style={{flexDirection:'row'}}>

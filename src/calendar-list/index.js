@@ -216,6 +216,7 @@ class CalendarList extends Component {
         testID={`${this.props.testID}_${item}`}
         classSelected = {this.props.classSelected}
         isOutBounded = {this.props.isOutBounded}
+        selectedDate = {this.props.selectedDate}
         scrollToMonth={this.scrollToMonth.bind(this)}
         item={item} 
         calendarHeight={this.props.calendarHeight} 
@@ -299,7 +300,6 @@ class CalendarList extends Component {
   }
 
   render() {
-    // console.log("#### calenderList render classSelected", this.props.isOutBounded)
     return (
       <View>
         <FlatList

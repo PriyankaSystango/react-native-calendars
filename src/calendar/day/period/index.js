@@ -227,7 +227,7 @@ class Day extends Component {
         accessibilityLabel={this.props.accessibilityLabel}
       >
         <View style={[this.style.wrapper]}>
-        {(flags.startingDay && !flags.endingDay) && <Image source={require('../../../../src/img/Vector-Left.png')} style={{position:'absolute', left:-5, top:15, zIndex:10 }}></Image>}
+        {(this.props.marking.startingDay) && <Image source={require('../../../../src/img/Vector-Left.png')} style={{position:'absolute', left:-5, top:15, zIndex:10 }}></Image>}
 
           {fillers}
           <View style={[containerStyle]}>
@@ -238,7 +238,7 @@ class Day extends Component {
               dotColor={dotColor}
             />
           </View>
-        {(!flags.startingDay && flags.endingDay) && <Image source={require('../../../../src/img/Vector-Right.png')} style={{position:'absolute', right:-5, top:15 }}></Image>}
+        {( this.props.marking.endingDay) && <Image source={require('../../../../src/img/Vector-Right.png')} style={{position:'absolute', right:-5, top:15 }}></Image>}
 
         </View>
       </TouchableWithoutFeedback>
