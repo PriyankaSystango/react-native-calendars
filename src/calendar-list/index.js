@@ -216,6 +216,7 @@ class CalendarList extends Component {
         testID={`${this.props.testID}_${item}`}
         classSelected = {this.props.classSelected}
         isOutBounded = {this.props.isOutBounded}
+        showDateRange = {this.props.showDateRange}
         selectedDate = {this.props.selectedDate}
         scrollToMonth={this.scrollToMonth.bind(this)}
         item={item} 

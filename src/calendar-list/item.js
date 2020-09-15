@@ -68,6 +68,7 @@ class CalendarListItem extends Component {
           classSelected = {this.props.classSelected}
           isOutBounded = {this.props.isOutBounded}
           selectedDate = {this.props.selectedDate}
+          showDateRange = {this.props.showDateRange}
           theme={ this.props.theme}
           style={[{height: this.props.calendarHeight, width: this.props.calendarWidth}, this.style.calendar, this.props.style]}
           current={row}

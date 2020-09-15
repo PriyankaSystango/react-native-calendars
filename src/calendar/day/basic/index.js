@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {shouldUpdate} from '../../../component-updater';
 import Dot from '../../dot';
 import styleConstructor from './style';
+import { Platform } from "react-native";
 
 
 class Day extends Component {
@@ -27,7 +28,7 @@ class Day extends Component {
     this.state = {
       circleType:0,
       isOutBounded: this.props.isOutBounded,
-      classSelected: this.props.theme.classSelected,
+      classSelected: this.props.classSelected,
       selectedDate: this.props.classSelected,
     }
     
@@ -50,6 +51,7 @@ class Day extends Component {
       var classData = this.props.classSelected
       var availabilityData = this.props.theme.availabilityData.availability
     var availabilityArray = []
+    if(availabilityData){
     Object.entries(availabilityData).map(item => {
       availabilityArray.push(item[1])
     })
@@ -62,7 +64,7 @@ class Day extends Component {
     }
     this.setState({
       circleType : flag
-    })
+    })}
     }
   }
 
@@ -70,6 +72,7 @@ class Day extends Component {
     var classData = this.props.classSelected
     var availabilityData = this.props.theme.availabilityData.availability
     var availabilityArray = []
+    if(availabilityData){
     Object.entries(availabilityData).map(item => {
       availabilityArray.push(item[1])
     })
@@ -85,6 +88,7 @@ class Day extends Component {
     this.setState({
       circleType : flag
     })
+  }
 
   }
   componentDidMount(){
@@ -254,9 +258,10 @@ class Day extends Component {
       let classes = this.state.classSelected
       var availabilityData = this.props.theme.availabilityData.availability
       var availabilityArray = []
+      if(availabilityData){
     Object.entries(availabilityData).map(item => {
       availabilityArray.push(item[1])
-    })
+    })}
       let indexArray = []
       for(i = 0; i< classes.length; i++){
         if(classes[i]  && availabilityArray[i]){
@@ -488,7 +493,7 @@ class Day extends Component {
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{ borderColor:this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20, justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
+        <View style={{ borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20, justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
         <View>
           <View style={{flexDirection:'row'}}>
             <View style={{height:40*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
@@ -516,7 +521,7 @@ class Day extends Component {
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{borderColor:this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20,  justifyContent:'center', alignItems:'center', backgroundColor:'white', padding:1,transform:[{rotate:'0deg'}]}}>
+        <View style={{borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20,  justifyContent:'center', alignItems:'center', backgroundColor:'white', padding:1,transform:[{rotate:'0deg'}]}}>
           <View>
             <View style={{flexDirection:'row'}}>
               <View style={{height:26.6*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
@@ -612,7 +617,7 @@ fullCircle(date, detail, isDisabled) {
       }}>
         <View
           style={{
-            borderColor:this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20, 
+            borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20, 
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: 'white',
@@ -639,20 +644,20 @@ fullCircle(date, detail, isDisabled) {
                 />
               </View>
             </View>
-            {/* <View style={{position:'absolute',left:18*i, height:40*i, width:4*i, backgroundColor:'white'}}/> */}
-            <View
+             <View
               style={{
                 position: 'absolute',
                 top: 5.5 * i,
                 left: 5 * i,
                 justifyContent: 'center',
                 alignItems: 'center',
+                alignSelf:'center',
                 backgroundColor: isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail),
-                borderRadius: 15 * i,
-                height: 29 * i,
-                width: 29 * i,
+                borderRadius:Platform.OS == 'android' ?  16 * i : 15 * i,
+                height: Platform.OS == 'android' ? 30 * i : 29 * i,
+                width: Platform.OS == 'android' ? 30 * i : 29 * i,
               }}>
-              <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14 * i, color: isDisabled && isDisabled.color !== '#00adf5'? '#E1E4E7' : this.getTextColor(detail)}}>
+              <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14 * i, color: isDisabled && isDisabled.color !== '#00adf5'? '#E1E4E7' : this.getTextColor(detail), alignSelf:'center'}}>
                 {String(date)}
               </Text>
             </View>
@@ -669,7 +674,7 @@ fullCircle(date, detail, isDisabled) {
         this.onDayPress()
       }}>
         <View style={{ 
-          borderColor:this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20,
+          borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20,
           justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
           <View>
             <View style={{flexDirection:'row'}}>
@@ -700,7 +705,7 @@ fullCircle(date, detail, isDisabled) {
         </TouchableOpacity>
     )
 }
-  getAppropriateCircle(textStyle){
+  getAppropriateCircle(textStyle, containerStyle){
     if(this.state.circleType == 4){
       return this.quarterCirclesView(this.props.children, this.props.date, textStyle[1])
     }else if(this.state.circleType == 3){
@@ -710,7 +715,27 @@ fullCircle(date, detail, isDisabled) {
     }else if(this.state.circleType == 1){
       return this.fullCircle(this.props.children, this.props.date, textStyle[1])
     }else{
-      return this.noCircleView(this.props.children, this.props.date, textStyle[1])
+     // return this.noCircleView(this.props.children, this.props.date, textStyle[1])
+      return  <TouchableOpacity
+        testID={this.props.testID}
+        style={containerStyle}
+        onPress={this.onDayPress}
+        onLongPress={this.onDayLongPress}
+        activeOpacity={activeOpacity}
+        disabled={shouldDisableTouchEvent}
+        accessibilityRole={isDisabled ? undefined : 'button'}
+        accessibilityLabel={this.props.accessibilityLabel}
+      >
+        <Text allowFontScaling={false} style={textStyle}>{String(this.props.children)}</Text>
+        <Dot
+          theme={theme}
+          isMarked={marked}
+          dotColor={dotColor}
+          isSelected={selected}
+          isToday={isToday}
+          isDisabled={isDisabled}
+        />
+      </TouchableOpacity>
     }
   }
 
@@ -769,31 +794,36 @@ fullCircle(date, detail, isDisabled) {
     ) {
       shouldDisableTouchEvent = disableAllTouchEventsForDisabledDays;
     }
+    if(this.state.circleType > 1 || this.state.circleType == 1 ){
+      return(
+        this.getAppropriateCircle(textStyle, containerStyle)
+
+      )
+    }else{
     return (
-    //   <TouchableOpacity
-    //   testID={this.props.testID}
-    //   style={containerStyle}
-    //   onPress={this.onDayPress}
-    //   onLongPress={this.onDayLongPress}
-    //   activeOpacity={activeOpacity}
-    //   disabled={shouldDisableTouchEvent}
-    //   accessibilityRole={isDisabled ? undefined : 'button'}
-    //   accessibilityLabel={this.props.accessibilityLabel}
-    // >
-    //   <Text allowFontScaling={false} style={textStyle}>{String(this.props.children)}</Text>
-    //   <Dot
-    //     theme={theme}
-    //     isMarked={marked}
-    //     dotColor={dotColor}
-    //     isSelected={selected}
-    //     isToday={isToday}
-    //     isDisabled={isDisabled}
-    //   />
-    // </TouchableOpacity>
-      this.getAppropriateCircle(textStyle)
-      
- );
+      <TouchableOpacity
+      testID={this.props.testID}
+      style={containerStyle}
+      onPress={this.onDayPress}
+      onLongPress={this.onDayLongPress}
+      activeOpacity={activeOpacity}
+      disabled={shouldDisableTouchEvent}
+      accessibilityRole={isDisabled ? undefined : 'button'}
+      accessibilityLabel={this.props.accessibilityLabel}
+    >
+      <Text allowFontScaling={false} style={textStyle}>{String(this.props.children)}</Text>
+      <Dot
+        theme={theme}
+        isMarked={marked}
+        dotColor={dotColor}
+        isSelected={selected}
+        isToday={isToday}
+        isDisabled={isDisabled}
+      />
+    </TouchableOpacity>
+    )
   }
+}
 }
 
 export default Day;
