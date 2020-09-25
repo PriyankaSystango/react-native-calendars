@@ -493,7 +493,7 @@ class Day extends Component {
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{ borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20, justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
+        <View style={{ borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 5 : 0, borderRadius:20, justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
         <View>
           <View style={{flexDirection:'row'}}>
             <View style={{height:40*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
@@ -521,7 +521,7 @@ class Day extends Component {
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20,  justifyContent:'center', alignItems:'center', backgroundColor:'white', padding:1,transform:[{rotate:'0deg'}]}}>
+        <View style={{borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 5 : 0, borderRadius:20,  justifyContent:'center', alignItems:'center', backgroundColor:'white',transform:[{rotate:'0deg'}]}}>
           <View>
             <View style={{flexDirection:'row'}}>
               <View style={{height:26.6*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
@@ -550,63 +550,6 @@ class Day extends Component {
     )
 }
 
-noCircleView(date, detail, isDisabled) {
-  let i = 0.75
-    return (
-      <TouchableOpacity onPress={()=>{
-        this.onDayPress()
-      }}>
-        <View
-          style={{
-            borderColor:isDisabled && isDisabled.color == '#00adf5' ? 'white' : 'white', borderWidth:isDisabled && isDisabled.color == '#00adf5' ? 2 : 0, borderRadius:20, 
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'white',
-          }}>
-          <View>
-            <View style={{flexDirection: 'row'}}>
-              <View
-                style={{
-                  height: 40 * i,
-                  width: 40 * i,
-                  backgroundColor: 'transparent',
-                }}>
-                <View
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    height: 40 * i,
-                    width: 40 * i,
-                    borderRadius: 20 * i,
-                    borderWidth: 2,
-                    borderColor: isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getFullCircelColor(detail),
-                  }}
-                />
-              </View>
-            </View>
-            {/* <View style={{position:'absolute',left:18*i, height:40*i, width:4*i, backgroundColor:'white'}}/> */}
-            <View
-              style={{
-                position: 'absolute',
-                top: 5.5 * i,
-                left: 5 * i,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail),
-                borderRadius: 15 * i,
-                height: 29 * i,
-                width: 29 * i,
-              }}>
-              <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14 * i, color: isDisabled && isDisabled.color !== '#00adf5'? '#E1E4E7' : this.getTextColor(detail)}}>
-                {String(date)}
-              </Text>
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
-  }
 
 
 fullCircle(date, detail, isDisabled) {
@@ -617,7 +560,7 @@ fullCircle(date, detail, isDisabled) {
       }}>
         <View
           style={{
-            borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20, 
+            borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 5 : 0, borderRadius:20, 
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: 'white',
@@ -674,7 +617,7 @@ fullCircle(date, detail, isDisabled) {
         this.onDayPress()
       }}>
         <View style={{ 
-          borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 2 : 0, borderRadius:20,
+          borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 5 : 0, borderRadius:20,
           justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
           <View>
             <View style={{flexDirection:'row'}}>
@@ -715,7 +658,6 @@ fullCircle(date, detail, isDisabled) {
     }else if(this.state.circleType == 1){
       return this.fullCircle(this.props.children, this.props.date, textStyle[1])
     }else{
-     // return this.noCircleView(this.props.children, this.props.date, textStyle[1])
       return  <TouchableOpacity
         testID={this.props.testID}
         style={containerStyle}
