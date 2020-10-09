@@ -66,6 +66,7 @@ class CalendarListItem extends Component {
         <Calendar
           testID={`${this.props.testID}_${row}`}
           classSelected = {this.props.classSelected}
+          passengerCount = {this.props.passengerCount}
           isOutBounded = {this.props.isOutBounded}
           selectedDate = {this.props.selectedDate}
           showDateRange = {this.props.showDateRange}

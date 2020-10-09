@@ -144,9 +144,38 @@ class Day extends Component {
   }
 
   }
+
+  getEconomyColor(data, details, passengerCount){
+    if(data[details.dateString] && data[details.dateString].economy && data[details.dateString].economy.seats >= passengerCount ){
+      return '#2044FF'
+    }else{
+        return 'rgb(231,237,241)'}
+  }
+  getPremiumColor(data, details, passengerCount){
+    if(data[details.dateString] && data[details.dateString].premium && data[details.dateString].premium.seats >= passengerCount){
+      return '#FEA41D'
+    }else{
+        return 'rgb(231,237,241)'}
+
+  }
+  getBusinessColor(data, details, passengerCount){
+    if(data[details.dateString] && data[details.dateString].business && data[details.dateString].business.seats >= passengerCount){
+      return '#A905F6'
+    }else{
+        return 'rgb(231,237,241)'}
+  }
+
+  getFirstColor(data, details, passengerCount){
+    if(data[details.dateString] && data[details.dateString].first && data[details.dateString].first.seats >= passengerCount){
+      return '#ED1870'
+    }else{
+        return 'rgb(231,237,241)'}
+  }
+  
   
   getFullCircelColor(details){
     var data;
+    var passengerCount =  this.props.passengerCount
     if(this.state.isOutBounded){
    data =  this.props.theme.availabilityData.outbound_availability
   }else{
@@ -165,41 +194,26 @@ class Day extends Component {
       }else{
       switch(index){
         case 0 :{
-          if(data[details.dateString] && data[details.dateString].economy){
-            return '#2044FF'
-          }else{
-              return 'rgb(231,237,241)'}
-
+          return this.getEconomyColor(data,details, passengerCount)
         }
         case 1 :{
-          if(data[details.dateString] && data[details.dateString].premium){
-            return '#FEA41D'
-          }else{
-              return 'rgb(231,237,241)'}
-
-        }
+         return this.getPremiumColor(data,details, passengerCount)
+         }
         case 2 :{
-          if(data[details.dateString] && data[details.dateString].business){
-            return '#A905F6'
-          }else{
-              return 'rgb(231,237,241)'}
-
+          return this.getBusinessColor(data,details, passengerCount)
         }
         case 3 :{
-          if(data[details.dateString] && data[details.dateString].first){
-            return '#ED1870'
-          }else{
-              return 'rgb(231,237,241)'}
-
-          }
-          default:{
-            return 'rgb(231,237,241)'
-          }
+          return this.getFirstColor(data,details, passengerCount)
+        }
+        default:{
+          return 'rgb(231,237,241)'
+        }
       }}
   }
 
   getQuarterCircleColor(details, index){
     var data;
+    var passengerCount =  this.props.passengerCount
     if(this.state.isOutBounded){
    data =  this.props.theme.availabilityData.outbound_availability
   }else{
@@ -211,39 +225,18 @@ class Day extends Component {
   }else{
     switch(index){
       case 1 : {
-        if(data[details.dateString] && data[details.dateString].business){
-          return '#A905F6'
-        }else{
-            return 'rgb(231,237,241)'
-            
-        }
+        return this.getBusinessColor(data,details, passengerCount)
       }
       case 2 : {
-        if(data[details.dateString] && data[details.dateString].premium){
-          return '#FEA41D'
-        }else{
-            return 'rgb(231,237,241)'
-            
-        }
+        return this.getPremiumColor(data,details, passengerCount)
       }
       case 3 : {
-        if(data[details.dateString] && data[details.dateString].first){
-          return '#EB186F'
-        }else{
-            return 'rgb(231,237,241)'
-            
-        }
+        return this.getFirstColor(data,details, passengerCount)
       }
       case 4 : {
-        if(data[details.dateString] && data[details.dateString].economy){
-          return '#2044FF'
-        }else{
-            return 'rgb(231,237,241)'
-            
-        }
+        return this.getEconomyColor(data,details, passengerCount)
       }
-      
-    }
+     }
     }
   }
 
@@ -258,6 +251,7 @@ class Day extends Component {
       let classes = this.state.classSelected
       var availabilityData = this.props.theme.availabilityData.availability
       var availabilityArray = []
+      var passengerCount =  this.props.passengerCount
       if(availabilityData){
     Object.entries(availabilityData).map(item => {
       availabilityArray.push(item[1])
@@ -275,35 +269,16 @@ class Day extends Component {
         case 1 :{
           switch (indexArray[0]){
             case 0 : {
-              if(data[details.dateString] && data[details.dateString].economy){
-                return '#2044FF'
-              }else{
-                  return 'rgb(231,237,241)'
-               }
+              return this.getEconomyColor(data,details, passengerCount)
             }
             case 1 : {
-              if(data[details.dateString] && data[details.dateString].premium){
-                return '#FEA41D'
-              }else{
-                  return 'rgb(231,237,241)'
-                  
-              }
+              return this.getPremiumColor(data,details, passengerCount)
             }
             case 2 : {
-              if(data[details.dateString] && data[details.dateString].business){
-                return '#AC05FA'
-              }else{
-                  return 'rgb(231,237,241)'
-                  
-              }
+              return this.getBusinessColor(data,details, passengerCount)
             }
             case 3 : {
-              if(data[details.dateString] && data[details.dateString].first){
-                return '#ED1870'
-              }else{
-                  return 'rgb(231,237,241)'
-                  
-              }
+              return this.getFirstColor(data,details, passengerCount)
             }
 
           }
@@ -311,36 +286,16 @@ class Day extends Component {
         case 2 :{
           switch (indexArray[1]){
             case 0 : {
-              if(data[details.dateString] && data[details.dateString].economy){
-                return '#2044FF'
-              }else{
-                  return 'rgb(231,237,241)'
-                  
-              }
+              return this.getEconomyColor(data,details, passengerCount)
             }
             case 1 : {
-              if(data[details.dateString] && data[details.dateString].premium){
-                return '#FEA41D'
-              }else{
-                  return 'rgb(231,237,241)'
-                  
-              }
+              return this.getPremiumColor(data,details, passengerCount)
             }
             case 2 : {
-              if(data[details.dateString] && data[details.dateString].business){
-                return '#A905F6'
-              }else{
-                  return 'rgb(231,237,241)'
-                  
-              }
+              return this.getBusinessColor(data,details, passengerCount)
             }
             case 3 : {
-              if(data[details.dateString] && data[details.dateString].first){
-                return '#ED1870'
-              }else{
-                  return 'rgb(231,237,241)'
-                  
-              }
+              return this.getFirstColor(data,details, passengerCount)
             }
 
           }
@@ -358,6 +313,7 @@ class Day extends Component {
     data =  this.props.theme.availabilityData.inbound_availability
 
    }
+   var passengerCount =  this.props.passengerCount
     let classes = this.state.classSelected
     let indexArray = []
     for(i = 0; i< classes.length; i++){
@@ -372,35 +328,16 @@ class Day extends Component {
       case 1 :{
         switch (indexArray[0]){
           case 0 : {
-            if(data[details.dateString] && data[details.dateString].economy){
-              return '#2044FF'
-            }else{
-                return 'rgb(231,237,241)'
-             }
+            return this.getEconomyColor(data,details, passengerCount)
           }
           case 1 : {
-            if( data[details.dateString] && data[details.dateString].premium){
-              return '#FEA41D'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getPremiumColor(data,details, passengerCount)
           }
           case 2 : {
-            if(data[details.dateString] && data[details.dateString].business){
-              return '#AC05FA'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getBusinessColor(data,details, passengerCount)
           }
           case 3 : {
-            if(data[details.dateString] && data[details.dateString].first){
-              return '#ED1870'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getFirstColor(data,details, passengerCount)
           }
 
         }
@@ -408,36 +345,16 @@ class Day extends Component {
       case 2 :{
         switch (indexArray[1]){
           case 0 : {
-            if(data[details.dateString] && data[details.dateString].economy){
-              return '#2044FF'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getEconomyColor(data,details, passengerCount)
           }
           case 1 : {
-            if(data[details.dateString] && data[details.dateString].premium){
-              return '#FEA41D'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getPremiumColor(data,details, passengerCount)
           }
           case 2 : {
-            if(data[details.dateString] && data[details.dateString].business){
-              return '#A905F6'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getBusinessColor(data,details, passengerCount)
           }
           case 3 : {
-            if(data[details.dateString] && data[details.dateString].first){
-              return '#ED1870'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getFirstColor(data,details, passengerCount)
           }
 
         }
@@ -445,36 +362,16 @@ class Day extends Component {
       case 3 :{
         switch (indexArray[2]){
           case 0 : {
-            if(data[details.dateString] && data[details.dateString].economy){
-              return '#2044FF'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getEconomyColor(data,details, passengerCount)
           }
           case 1 : {
-            if(data[details.dateString] && data[details.dateString].premium){
-              return '#FEA41D'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getPremiumColor(data,details, passengerCount)
           }
           case 2 : {
-            if(data[details.dateString] && data[details.dateString].business){
-              return '#A905F6'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getBusinessColor(data,details, passengerCount)
           }
           case 3 : {
-            if(data[details.dateString] && data[details.dateString].first){
-              return '#ED1870'
-            }else{
-                return 'rgb(231,237,241)'
-                
-            }
+            return this.getFirstColor(data,details, passengerCount)
           }
 
         }

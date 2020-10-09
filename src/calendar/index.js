@@ -241,6 +241,7 @@ class Calendar extends Component {
         <DayComp
           testID={`${SELECT_DATE_SLOT}-${dateAsObject.dateString}`}
           isOutBounded = {this.state.isOutBounded}
+          passengerCount = {this.props.passengerCount}
           classSelected = {this.state.classSelected}
           selectedDate = {this.state.selectedDate}
           showDateRange = {this.props.showDateRange}
@@ -355,6 +356,7 @@ class Calendar extends Component {
           theme={this.props.theme}
           classSelected = {this.state.classSelected}
           isOutBounded = {this.state.isOutBounded}
+          passengerCount = {this.props.passengerCount}
           selectedDate = {this.state.selectedDate}
           showDateRange = {this.props.showDateRange}
           marking={{disableTouchEvent: true}}
