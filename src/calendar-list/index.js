@@ -88,11 +88,12 @@ class CalendarList extends Component {
        * This selects range around current shown month [-0, +2] or [-1, +1] month for detail calendar rendering.
        * If `this.pastScrollRange` is `undefined` it's equal to `false` or 0 in next condition.
        */
-      if (this.props.pastScrollRange - 1 <= i && i <= this.props.pastScrollRange + 1 || !this.props.pastScrollRange && i <= this.props.pastScrollRange + 2) {
-        rows.push(rangeDate);
-      } else {
-        rows.push(rangeDateStr);
-      }
+      rows.push(rangeDate);
+      // if (this.props.pastScrollRange - 1 <= i && i <= this.props.pastScrollRange + 1 || !this.props.pastScrollRange && i <= this.props.pastScrollRange + 2) {
+      //   rows.push(rangeDate);
+      // } else {
+      //   rows.push(rangeDateStr);
+      // }
     }
 
     this.state = {
@@ -204,10 +205,10 @@ class CalendarList extends Component {
       this.props.onVisibleMonthsChange(visibleMonths);
     }
 
-    this.setState({
-      rows: newrows,
-      currentMonth: parseDate(visibleMonths[0])
-    });
+    // this.setState({
+    //   rows: newrows,
+    //   currentMonth: parseDate(visibleMonths[0])
+    // });
   }
 
   renderCalendar({item}) {
@@ -323,7 +324,7 @@ class CalendarList extends Component {
           scrollEnabled={this.props.scrollEnabled}
           keyExtractor={this.props.keyExtractor}
           initialScrollIndex={this.state.openDate ? this.getMonthIndex(this.state.openDate) : false}
-          getItemLayout={this.getItemLayout}
+          // getItemLayout={this.getItemLayout}
           scrollsToTop={this.props.scrollsToTop}
           onEndReachedThreshold={this.props.onEndReachedThreshold}
           onEndReached={this.props.onEndReached}

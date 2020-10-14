@@ -146,27 +146,27 @@ class Day extends Component {
   }
 
   getEconomyColor(data, details, passengerCount){
-    if(data[details.dateString] && data[details.dateString].economy && data[details.dateString].economy.seats >= passengerCount ){
+    if( data[details.dateString].economy && data[details.dateString].economy.seats >= passengerCount ){
       return '#2044FF'
     }else{
         return 'rgb(231,237,241)'}
   }
   getPremiumColor(data, details, passengerCount){
-    if(data[details.dateString] && data[details.dateString].premium && data[details.dateString].premium.seats >= passengerCount){
+    if(data[details.dateString].premium && data[details.dateString].premium.seats >= passengerCount){
       return '#FEA41D'
     }else{
         return 'rgb(231,237,241)'}
 
   }
   getBusinessColor(data, details, passengerCount){
-    if(data[details.dateString] && data[details.dateString].business && data[details.dateString].business.seats >= passengerCount){
+    if(data[details.dateString].business && data[details.dateString].business.seats >= passengerCount){
       return '#A905F6'
     }else{
         return 'rgb(231,237,241)'}
   }
 
   getFirstColor(data, details, passengerCount){
-    if(data[details.dateString] && data[details.dateString].first && data[details.dateString].first.seats >= passengerCount){
+    if( data[details.dateString].first && data[details.dateString].first.seats >= passengerCount){
       return '#ED1870'
     }else{
         return 'rgb(231,237,241)'}
