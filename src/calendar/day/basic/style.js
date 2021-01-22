@@ -2,17 +2,18 @@ import {StyleSheet, Platform} from 'react-native';
 import * as defaultStyle from '../../../style';
 
 const STYLESHEET_ID = 'stylesheet.day.basic';
+import scale,{verticalScale} from "../../../helpers/scale"
 
 export default function styleConstructor(theme={}) {
   const appStyle = {...defaultStyle, ...theme};
   return StyleSheet.create({
     base: {
-      width: 32,
-      height: 32,
+      width: scale(32),
+      height: scale(32),
       alignItems: 'center',
     },
     text: {
-      marginTop: Platform.OS === 'android' ? 4 : 6,
+      marginTop: Platform.OS === 'android' ? scale(4) :Platform.isPad ? scale(15): scale(6),
       fontSize: appStyle.textDayFontSize,
       fontFamily: appStyle.textDayFontFamily,
       fontWeight: appStyle.textDayFontWeight,
@@ -21,15 +22,15 @@ export default function styleConstructor(theme={}) {
       ...appStyle.textDayStyle
     },
     alignedText: {
-      marginTop: Platform.OS === 'android' ? 4 : 6
+      marginTop: Platform.OS === 'android' ? scale(4) : scale(6)
     },
     selected: {
       backgroundColor: appStyle.selectedDayBackgroundColor,
-      borderRadius: 16
+      borderRadius: scale(16)
     },
     today: {
       backgroundColor: appStyle.todayBackgroundColor,
-      borderRadius: 16
+      borderRadius: scale(16)
     },
     todayText: {
       color: appStyle.todayTextColor

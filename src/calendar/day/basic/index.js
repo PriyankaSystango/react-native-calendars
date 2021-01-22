@@ -5,7 +5,7 @@ import {shouldUpdate} from '../../../component-updater';
 import Dot from '../../dot';
 import styleConstructor from './style';
 import { Platform } from "react-native";
-
+import scale,{verticalScale} from "../../../helpers/scale"
 
 class Day extends Component {
   static displayName = 'IGNORE';
@@ -122,8 +122,9 @@ class Day extends Component {
       if(data[details.dateString].peak){
         return 'rgb(231,237,241)'
       }else{
-          return '#132C52'
+          return 'rgb(196,244,255)'
       }
+      
   }
   }
 
@@ -138,7 +139,7 @@ class Day extends Component {
       if(data[details.dateString].peak){
         return '#132C52'
       }else{
-          return 'rgb(231,237,241)'
+          return '#132C52'
           
       }
   }
@@ -390,19 +391,19 @@ class Day extends Component {
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{ borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 5 : 0, borderRadius:20, justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
+        <View style={{ borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? scale(5) : 0, borderRadius:scale(20), justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
         <View>
           <View style={{flexDirection:'row'}}>
-            <View style={{height:40*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-              <View style={{position:'absolute',top:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getHalfCircleColor(detail,1)}}/>
+            <View style={{height:scale(40)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
+              <View style={{position:'absolute',top:0, left:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2.5), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getHalfCircleColor(detail,1)}}/>
             </View>
-            <View style={{height:40*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-              <View style={{position:'absolute',top:0, right:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getHalfCircleColor(detail,2)}}/>
+            <View style={{height:scale(40)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
+              <View style={{position:'absolute',top:0, right:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2.5), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getHalfCircleColor(detail,2)}}/>
             </View>
           </View>
-          <View style={{position:'absolute',left:18*i, height:40*i, width:4*i, backgroundColor:'white'}}/>
-         <View style={{position:'absolute', top:(5.5)*i, left:5*i, justifyContent:'center', alignItems:'center',backgroundColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail), borderRadius:15*i,height:29*i, width:29*i,}}>
-          <Text style={{fontSize: isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14*i, color:isDisabled && isDisabled.color !== '#00adf5' ? '#E1E4E7' : this.getTextColor(detail)}}>
+          <View style={{position:'absolute',left:scale(18)*i, height:scale(40)*i, width:scale(4)*i, backgroundColor:'white'}}/>
+         <View style={{position:'absolute', top:scale(5.5)*i, left:scale(5.5)*i, justifyContent:'center', alignItems:'center',backgroundColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail), borderRadius:scale(15)*i,height:scale(29)*i, width:scale(29)*i,}}>
+          <Text style={{fontSize: isDisabled && isDisabled.color !== '#00adf5' ? scale(16) : scale(14)*i, color:isDisabled && isDisabled.color !== '#00adf5' ? '#E1E4E7' : this.getTextColor(detail)}}>
             {String(date)}
             </Text>
           </View>
@@ -418,26 +419,26 @@ class Day extends Component {
       <TouchableOpacity onPress={()=>{
         this.onDayPress()
       }}>
-        <View style={{borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 5 : 0, borderRadius:20,  justifyContent:'center', alignItems:'center', backgroundColor:'white',transform:[{rotate:'0deg'}]}}>
+        <View style={{borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? scale(5) : 0, borderRadius:scale(20),  justifyContent:'center', alignItems:'center', backgroundColor:'white',transform:[{rotate:'0deg'}]}}>
           <View>
             <View style={{flexDirection:'row'}}>
-              <View style={{height:26.6*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',top:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,1)}}/>
+              <View style={{height:scale(22)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
+                <View style={{position:'absolute',top:0, left:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,1)}}/>
               </View>
-              <View style={{height:26.6*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',top:0, right:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,2)}}/>
+              <View style={{height:scale(22)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
+                <View style={{position:'absolute',top:0, right:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,2)}}/>
               </View>
             </View>
             <View style={{flexDirection:'row'}}>
-              <View style={{height:13.3*i, width:40*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',bottom:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,3)}}/>
+              <View style={{height:scale(17.3)*i, width:scale(40)*i, backgroundColor:'transparent', overflow:'hidden'}}>
+                <View style={{position:'absolute',bottom:0, left:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,3)}}/>
               </View>
             </View>
-            <View style={{position:'absolute',left:18*i, height:2*i, width:4*i, backgroundColor:'white'}}/>
-            <View style={{position:'absolute', height:2*i, top:26*i, width:4*i, backgroundColor:'white', transform:[{rotate:'70deg'}]}}/>
-            <View style={{position:'absolute', height:2*i, top:26*i, left:36*i, width:4*i, backgroundColor:'white', transform:[{rotate:'-70deg'}]}}/>
-            <View style={{position:'absolute', height:30*i, width:30*i,justifyContent:'center', alignItems:'center', backgroundColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail), borderRadius:15*i, top:5*i, left:5*i}}>
-              <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14*i, color:isDisabled &&  isDisabled.color !== '#00adf5' ? '#E1E4E7' : this.getTextColor(detail)}}>
+            <View style={{position:'absolute',left:scale(18)*i, height:scale(3)*i, width:scale(4)*i, backgroundColor:'white'}}/>
+            <View style={{position:'absolute', height:scale(4)*i, top:scale(22)*i, width:scale(5)*i, backgroundColor:'white', transform:[{rotate:'70deg'}]}}/>
+            <View style={{position:'absolute', height:scale(4)*i, top:scale(22)*i, left:scale(36)*i, width:scale(5)*i, backgroundColor:'white', transform:[{rotate:'-70deg'}]}}/>
+            <View style={{position:'absolute', height:scale(30)*i, width:scale(30)*i,justifyContent:'center', alignItems:'center', backgroundColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail), borderRadius:scale(15)*i, top:scale(5)*i, left:scale(5)*i}}>
+              <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? scale(16) : scale(14)*i, color:isDisabled &&  isDisabled.color !== '#00adf5' ? '#E1E4E7' : this.getTextColor(detail)}}>
               {String(date)}
               </Text>
             </View>
@@ -457,7 +458,7 @@ fullCircle(date, detail, isDisabled) {
       }}>
         <View
           style={{
-            borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? 5 : 0, borderRadius:20, 
+            borderColor:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? '#03B2D8' : 'white', borderWidth:this.state.selectedDate && this.state.selectedDate.dateString == detail.dateString ? scale(5) : 0, borderRadius:scale(20), 
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: 'white',
@@ -466,8 +467,8 @@ fullCircle(date, detail, isDisabled) {
             <View style={{flexDirection: 'row'}}>
               <View
                 style={{
-                  height: 40 * i,
-                  width: 40 * i,
+                  height: scale(40) * i,
+                  width: scale(40) * i,
                   backgroundColor: 'transparent',
                 }}>
                 <View
@@ -475,10 +476,10 @@ fullCircle(date, detail, isDisabled) {
                     position: 'absolute',
                     top: 0,
                     left: 0,
-                    height: 40 * i,
-                    width: 40 * i,
-                    borderRadius: 20 * i,
-                    borderWidth: 2,
+                    height: scale(40) * i,
+                    width: scale(40) * i,
+                    borderRadius: scale(20) * i,
+                    borderWidth: scale(2.5),
                     borderColor: isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getFullCircelColor(detail),
                   }}
                 />
@@ -487,17 +488,17 @@ fullCircle(date, detail, isDisabled) {
              <View
               style={{
                 position: 'absolute',
-                top: 5.5 * i,
-                left: 5 * i,
+                top: scale(5.5) * i,
+                left: scale(5.5) * i,
                 justifyContent: 'center',
                 alignItems: 'center',
                 alignSelf:'center',
                 backgroundColor: isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail),
-                borderRadius:Platform.OS == 'android' ?  16 * i : 15 * i,
-                height: Platform.OS == 'android' ? 30 * i : 29 * i,
-                width: Platform.OS == 'android' ? 30 * i : 29 * i,
+                borderRadius:Platform.OS == 'android' ?  scale(16) * i : scale(15) * i,
+                height: Platform.OS == 'android' ? scale(30) * i : scale(29) * i,
+                width: Platform.OS == 'android' ? scale(30) * i : scale(29) * i,
               }}>
-              <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14 * i, color: isDisabled && isDisabled.color !== '#00adf5'? '#E1E4E7' : this.getTextColor(detail), alignSelf:'center'}}>
+              <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? scale(16) : scale(14) * i, color: isDisabled && isDisabled.color !== '#00adf5'? '#E1E4E7' : this.getTextColor(detail), alignSelf:'center'}}>
                 {String(date)}
               </Text>
             </View>
@@ -518,25 +519,25 @@ fullCircle(date, detail, isDisabled) {
           justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
           <View>
             <View style={{flexDirection:'row'}}>
-              <View style={{height:20*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',top:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white':this.getQuarterCircleColor(detail,1)}}/>
+              <View style={{height:scale(20)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
+                <View style={{position:'absolute',top:0, left:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2.5), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white':this.getQuarterCircleColor(detail,1)}}/>
               </View>
-              <View style={{height:20*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',top:0, right:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white':this.getQuarterCircleColor(detail,2)}}/>
+              <View style={{height:scale(20)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
+                <View style={{position:'absolute',top:0, right:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2.5), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white':this.getQuarterCircleColor(detail,2)}}/>
               </View>
             </View>
             <View style={{flexDirection:'row'}}>
-              <View style={{height:20*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',bottom:0, left:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white':this.getQuarterCircleColor(detail,3)}}/>
+              <View style={{height:scale(20)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
+                <View style={{position:'absolute',bottom:0, left:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2.5), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white':this.getQuarterCircleColor(detail,3)}}/>
               </View>
-              <View style={{height:20*i, width:20*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',bottom:0, right:0, height:40*i, width:40*i, borderRadius:20*i, borderWidth:2, borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white':this.getQuarterCircleColor(detail,4)}}/>
+              <View style={{height:scale(20)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
+                <View style={{position:'absolute',bottom:0, right:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2.5), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white':this.getQuarterCircleColor(detail,4)}}/>
               </View>
             </View>
-            <View style={{position:'absolute',left:18*i, height:40*i, width:4*i, backgroundColor:'white'}}/>
-            <View style={{position:'absolute',top:18*i, height:4*i, width:40*i, backgroundColor:'white'}}/>
-            <View style={{position:'absolute', top:5*i, left:5*i, justifyContent:'center', alignItems:'center',backgroundColor: isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail), borderRadius:15*i,height:29*i, width:29*i, }}>
-            <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? 16 : 14 * i, color: isDisabled && isDisabled.color !== '#00adf5'? '#E1E4E7' : this.getTextColor(detail)}}>
+            <View style={{position:'absolute',left:scale(18)*i, height:scale(40)*i, width:scale(4)*i, backgroundColor:'white'}}/>
+            <View style={{position:'absolute',top:scale(18)*i, height:scale(4)*i, width:scale(40)*i, backgroundColor:'white'}}/>
+            <View style={{position:'absolute', top:scale(5.5)*i, left:scale(5.2)*i, justifyContent:'center', alignItems:'center',backgroundColor: isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.getBackgroundColor(detail), borderRadius:scale(15)*i,height:scale(29)*i, width:scale(29)*i, }}>
+            <Text style={{fontSize:isDisabled && isDisabled.color !== '#00adf5' ? scale(16) : scale(14) * i, color: isDisabled && isDisabled.color !== '#00adf5'? '#E1E4E7' : this.getTextColor(detail)}}>
                 {String(date)}
               </Text>
             </View>

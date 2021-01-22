@@ -7,6 +7,7 @@ import Dot from '../../dot';
 import * as defaultStyle from '../../../style';
 import styleConstructor from './style';
 import moment from "moment"
+import scale,{verticalScale} from "../../../helpers/scale"
 
 
 class Day extends Component {
@@ -135,7 +136,7 @@ class Day extends Component {
 
     if (this.props.marking) {
       containerStyle.push({
-        borderRadius: 17
+        borderRadius: scale(17)
       });
 
       const flags = this.markingStyle;
@@ -161,7 +162,7 @@ class Day extends Component {
         };
         containerStyle.push({
           backgroundColor: flags.startingDay.color,
-          borderRadius:50
+          borderRadius:scale(50)
         });
       } else if (flags.endingDay && !flags.startingDay) {
         rightFillerStyle = {
@@ -172,7 +173,7 @@ class Day extends Component {
         };
         containerStyle.push({
           backgroundColor: flags.endingDay.color,
-          borderRadius:50
+          borderRadius:scale(50)
         });
       } else if (flags.day) {
         leftFillerStyle = {backgroundColor: flags.day.color};
@@ -188,7 +189,7 @@ class Day extends Component {
         };
         containerStyle.push({
           backgroundColor: flags.endingDay.color,
-          borderRadius:50
+          borderRadius:scale(50)
         });
       }
       var rightBorderStyle = {}
@@ -197,13 +198,13 @@ class Day extends Component {
         let day = moment(this.props.date.dateString).day()
         if(day == 6){
           rightBorderStyle =  {
-            borderTopRightRadius : 20,
-            borderBottomRightRadius : 20,
+            borderTopRightRadius : scale(20),
+            borderBottomRightRadius : scale(20),
           }
         }else if( day == 0){
           leftBorderStyle =  {
-            borderTopLeftRadius : 20,
-            borderBottomLeftRadius : 20,
+            borderTopLeftRadius : scale(20),
+            borderBottomLeftRadius : scale(20),
           }
         }
       }
@@ -227,18 +228,18 @@ class Day extends Component {
         accessibilityLabel={this.props.accessibilityLabel}
       >
         <View style={[this.style.wrapper]}>
-        {(this.props.marking.startingDay && this.props.showDateRange) && <Image source={require('../../../../src/img/Vector-Left.png')} style={{position:'absolute', left:-5, top:15, zIndex:10 }}></Image>}
+        {(this.props.marking.startingDay && this.props.showDateRange) && <Image source={require('../../../../src/img/Vector-Left.png')} style={{position:'absolute', left:scale(-5), top:scale(15), zIndex:10, height:scale(6), width:scale(6) }}></Image>}
 
           {fillers}
           <View style={[containerStyle]}>
-            <Text allowFontScaling={false} style={[textStyle]}>{String(this.props.children)}</Text>
+            <Text allowFontScaling={false} style={[textStyle,{fontSize:scale(16)}]}>{String(this.props.children)}</Text>
             <Dot
               theme={theme}
               isMarked={marked}
               dotColor={dotColor}
             />
           </View>
-        {( this.props.marking.endingDay && this.props.showDateRange) && <Image source={require('../../../../src/img/Vector-Right.png')} style={{position:'absolute', right:-5, top:15 }}></Image>}
+        {( this.props.marking.endingDay && this.props.showDateRange) && <Image source={require('../../../../src/img/Vector-Right.png')} style={{position:'absolute', right:scale(-5), top:scale(15), height:scale(6), width:scale(6) }}></Image>}
 
         </View>
       </TouchableWithoutFeedback>

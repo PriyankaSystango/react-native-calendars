@@ -1,9 +1,10 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import * as defaultStyle from '../../../style';
+import scale,{verticalScale} from "../../../helpers/scale"
 
 
 const STYLESHEET_ID = 'stylesheet.day.period';
-const FILLER_HEIGHT = 34;
+const FILLER_HEIGHT = scale(32);
 
 export default function styleConstructor(theme={}) {
   const appStyle = {...defaultStyle, ...theme};
@@ -15,9 +16,10 @@ export default function styleConstructor(theme={}) {
     },
     base: {
       //borderWidth: 1,
-      width: 38,
+      width: scale(32),
       height: FILLER_HEIGHT,
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent:'center'
     },
     fillers: {
       position: 'absolute',
@@ -35,7 +37,7 @@ export default function styleConstructor(theme={}) {
       flex: 1
     },
     text: {
-      marginTop:Platform.OS === 'android' ? 5 : 7,
+      marginTop:Platform.OS === 'android' ? verticalScale(5) : verticalScale(7),
       fontSize: appStyle.textDayFontSize,
       fontFamily: appStyle.textDayFontFamily,
       fontWeight: appStyle.textDayFontWeight,
