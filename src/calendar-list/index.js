@@ -217,6 +217,7 @@ class CalendarList extends Component {
         testID={`${this.props.testID}_${item}`}
         classSelected = {this.props.classSelected}
         passengerCount = {this.props.passengerCount}
+        isOffPeakValue = {this.props.isOffPeakValue}
         isOutBounded = {this.props.isOutBounded}
         showDateRange = {this.props.showDateRange}
         selectedDate = {this.props.selectedDate}

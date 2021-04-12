@@ -243,6 +243,7 @@ class Calendar extends Component {
           testID={`${SELECT_DATE_SLOT}-${dateAsObject.dateString}`}
           isOutBounded = {this.state.isOutBounded}
           passengerCount = {this.props.passengerCount}
+          isOffPeakValue = {this.props.isOffPeakValue}
           classSelected = {this.state.classSelected}
           selectedDate = {this.state.selectedDate}
           showDateRange = {this.props.showDateRange}
@@ -358,6 +359,7 @@ class Calendar extends Component {
           classSelected = {this.state.classSelected}
           isOutBounded = {this.state.isOutBounded}
           passengerCount = {this.props.passengerCount}
+          isOffPeakValue = {this.props.isOffPeakValue}
           selectedDate = {this.state.selectedDate}
           showDateRange = {this.props.showDateRange}
           marking={{disableTouchEvent: true}}
@@ -412,12 +414,13 @@ class Calendar extends Component {
         indicator = true;
       }
     }
+
     return (
       <GestureRecognizer
         // onSwipe={(direction, state) => this.onSwipe(direction, state)}
         >
         <View
-          style={[this.style.container, this.props.style,{backgroundColor:'white', height:ReactNative.Platform.isPad ?  verticalScale(450): verticalScale(360)}]}
+          style={[this.style.container, this.props.style,{backgroundColor:'white', height:ReactNative.Platform.isPad ?  verticalScale(450): verticalScale(390)}]}
           accessibilityElementsHidden={this.props.accessibilityElementsHidden} // iOS
           importantForAccessibility={this.props.importantForAccessibility} // Android
         >

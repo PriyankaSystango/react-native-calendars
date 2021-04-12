@@ -7,6 +7,7 @@ import styleConstructor from './style';
 import { Platform } from "react-native";
 import scale,{verticalScale} from "../../../helpers/scale"
 
+
 class Day extends Component {
   static displayName = 'IGNORE';
 
@@ -119,10 +120,10 @@ class Day extends Component {
        data =  this.props.theme.availabilityData.inbound_availability
       }
     if(data[details.dateString]){
-      if(data[details.dateString].peak){
-        return 'rgb(231,237,241)'
-      }else{
-          return 'rgb(196,244,255)'
+      if(data[details.dateString].peak || !this.props.isOffPeakValue){
+        return 'white'
+      }else {
+          return '#C7E4F4'
       }
       
   }
