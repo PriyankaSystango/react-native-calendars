@@ -16,6 +16,7 @@ import shouldComponentUpdate from './updater';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import {SELECT_DATE_SLOT} from '../testIDs';
 import scale,{verticalScale} from "../helpers/scale"
+const { height, width } = ReactNative.Dimensions.get('window');
 
 //Fallback when RN version is < 0.44
 const {View, ViewPropTypes} = ReactNative;
@@ -420,7 +421,7 @@ class Calendar extends Component {
         // onSwipe={(direction, state) => this.onSwipe(direction, state)}
         >
         <View
-          style={[this.style.container, this.props.style,{backgroundColor:'white', height:ReactNative.Platform.isPad ?  verticalScale(450): verticalScale(390)}]}
+          style={[this.style.container, this.props.style,{backgroundColor:'white', height:ReactNative.Platform.isPad ?  verticalScale(450) : height < 750 ? verticalScale(440) : verticalScale(400) }]}
           accessibilityElementsHidden={this.props.accessibilityElementsHidden} // iOS
           importantForAccessibility={this.props.importantForAccessibility} // Android
         >
