@@ -227,16 +227,18 @@ class Day extends Component {
   }else{
     switch(index){
       case 1 : {
-        return this.getBusinessColor(data,details, passengerCount)
+        return this.getFirstColor(data,details, passengerCount)
+        
       }
       case 2 : {
-        return this.getPremiumColor(data,details, passengerCount)
+        return this.getEconomyColor(data,details, passengerCount)
       }
       case 3 : {
-        return this.getFirstColor(data,details, passengerCount)
+        return this.getBusinessColor(data,details, passengerCount)
       }
       case 4 : {
-        return this.getEconomyColor(data,details, passengerCount)
+       
+        return this.getPremiumColor(data,details, passengerCount)
       }
      }
     }
@@ -269,7 +271,7 @@ class Day extends Component {
       }else{
       switch(index){
         case 1 :{
-          switch (indexArray[0]){
+          switch (indexArray[1]){
             case 0 : {
               return this.getEconomyColor(data,details, passengerCount)
             }
@@ -286,7 +288,7 @@ class Day extends Component {
           }
         }
         case 2 :{
-          switch (indexArray[1]){
+          switch (indexArray[0]){
             case 0 : {
               return this.getEconomyColor(data,details, passengerCount)
             }
@@ -424,15 +426,15 @@ class Day extends Component {
           <View>
             <View style={{flexDirection:'row'}}>
               <View style={{height:scale(22)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',top:0, left:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,1)}}/>
+                <View style={{position:'absolute',top:0, left:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,3)}}/>
               </View>
               <View style={{height:scale(22)*i, width:scale(20)*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',top:0, right:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,2)}}/>
+                <View style={{position:'absolute',top:0, right:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,1)}}/>
               </View>
             </View>
             <View style={{flexDirection:'row'}}>
               <View style={{height:scale(17.3)*i, width:scale(40)*i, backgroundColor:'transparent', overflow:'hidden'}}>
-                <View style={{position:'absolute',bottom:0, left:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,3)}}/>
+                <View style={{position:'absolute',bottom:0, left:0, height:scale(40)*i, width:scale(40)*i, borderRadius:scale(20)*i, borderWidth:scale(2), borderColor:isDisabled && isDisabled.color !== '#00adf5' ? 'white' : this.threePartCircleColor(detail,2)}}/>
               </View>
             </View>
             <View style={{position:'absolute',left:scale(18)*i, height:scale(3)*i, width:scale(4)*i, backgroundColor:'white'}}/>

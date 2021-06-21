@@ -421,7 +421,7 @@ class Calendar extends Component {
         // onSwipe={(direction, state) => this.onSwipe(direction, state)}
         >
         <View
-          style={[this.style.container, this.props.style,{backgroundColor:'white', height:ReactNative.Platform.isPad ?  verticalScale(450) : height < 750 ? verticalScale(440) : verticalScale(400) }]}
+          style={[this.style.container, this.props.style,{backgroundColor:'white', height:ReactNative.Platform.isPad ?  verticalScale(450) : height < 750 ? verticalScale(440) : verticalScale(390) }]}
           accessibilityElementsHidden={this.props.accessibilityElementsHidden} // iOS
           importantForAccessibility={this.props.importantForAccessibility} // Android
         >
